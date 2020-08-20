@@ -10,9 +10,9 @@ import { MustMatchPassword } from 'src/app/helpers/must-match-password';
 import { UserNameValidation } from 'src/app/helpers/username-validation';
 import { ResetPasswordDetails } from 'src/app/interfaces/ResetPasswordDetails';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserRoleType, UserRoleTypeName } from 'src/app/shared/userroleenum';
 import { Project353Routes } from 'src/app/app.component.routes';
 import { LoginUtilityService } from 'src/app/shared/services/loginutilityservice';
+import { UserRoleType } from 'src/app/shared/userroleenum';
 
 @Component({
   selector: 'app-mylogin',
