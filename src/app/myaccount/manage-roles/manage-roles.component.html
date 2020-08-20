@@ -1,0 +1,66 @@
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li *ngIf="createdByRole === 1" class="nav-item">
+        <a class="nav-link" [class.active]="createdByRole === 1" data-toggle="tab" (click)="selectRole(1)">Super Admin</a>
+      </li>
+      <li *ngIf="createdByRole === 1 || createdByRole === 2" class="nav-item">
+        <a class="nav-link" [class.active]="createdByRole === 2" data-toggle="tab" (click)="selectRole(2)">Admin</a>
+      </li>
+      <li *ngIf="createdByRole === 1 || createdByRole === 2 || createdByRole === 3"  class="nav-item">
+        <a class="nav-link" [class.active]="createdByRole === 3" data-toggle="tab" (click)="selectRole(3)">Manager</a>
+      </li>
+      <li *ngIf="createdByRole === 1 || createdByRole === 2 || createdByRole === 3"  class="nav-item">
+        <a class="nav-link" data-toggle="tab" (click)="selectRole(4)">User</a>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="roleTab === 1" class="card-body">
+    <h5 class="card-title">Super Admin</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <button data-toggle="modal" class="btn btn-primary" (click)="register(1)" href="#myModal">Create New Super Admin</button>
+    <br>
+    <app-managerole-superadmin [superAdminList]="superAdminList" [columnDefs]="columnDefs" [roleDefinitions]="roleDefinitions"
+      [accountStatusDefinitions]="accountStatusDefinitions"></app-managerole-superadmin>
+    <div *ngIf="showRegistration">
+      <app-registrationform [registerInputData]="roleInputData" (updateUserTable)="updateUserTable($event)">
+      </app-registrationform>
+    </div>
+  </div>
+  <div *ngIf="roleTab === 2" class="card-body">
+    <h5 class="card-title">Admin</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <button *ngIf="createdByRole === 1" data-toggle="modal" class="btn btn-primary" (click)="register(2)" href="#myModal">Create New Admin</button>
+    <br>
+    <app-managerole-admin [adminList]="adminList" [columnDefs]="columnDefs" [roleDefinitions]="roleDefinitions"
+      [accountStatusDefinitions]="accountStatusDefinitions"></app-managerole-admin>
+    <div *ngIf="showRegistration">
+      <app-registrationform [registerInputData]="roleInputData" (updateUserTable)="updateUserTable($event)">
+      </app-registrationform>
+    </div>
+  </div>
+  <div *ngIf="roleTab === 3" class="card-body">
+    <h5 class="card-title">Manager</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <button *ngIf="createdByRole === 1 || createdByRole === 2" data-toggle="modal" class="btn btn-primary" (click)="register(3)" href="#myModal">Create Manager</button>
+    <br>
+    <app-managerole-manager [managerList]="managerList" [columnDefs]="columnDefs" [roleDefinitions]="roleDefinitions"
+      [accountStatusDefinitions]="accountStatusDefinitions"></app-managerole-manager>
+    <div *ngIf="showRegistration">
+      <app-registrationform [registerInputData]="roleInputData" (updateUserTable)="updateUserTable($event)">
+      </app-registrationform>
+    </div>
+  </div>
+  <div *ngIf="roleTab === 4" class="card-body">
+    <h5 class="card-title">User</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <button *ngIf="createdByRole === 1 || createdByRole === 2 || createdByRole === 3" data-toggle="modal" class="btn btn-primary" (click)="register(4)" href="#myModal">Create New User</button>
+    <br>
+    <app-managerole-user [userList]="userList" [columnDefs]="columnDefs" [roleDefinitions]="roleDefinitions"
+      [accountStatusDefinitions]="accountStatusDefinitions"></app-managerole-user>
+    <div *ngIf="showRegistration">
+      <app-registrationform [registerInputData]="roleInputData" (updateUserTable)="updateUserTable($event)">
+      </app-registrationform>
+    </div>
+  </div>
+</div>

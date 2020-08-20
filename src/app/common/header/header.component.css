@@ -1,0 +1,52 @@
+.double-nav .breadcrumb-dn {
+    color: #fff;
+}
+.side-nav.wide.slim .sn-ad-avatar-wrapper a span {
+    display: none;
+}
+.header-fixed-top {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    left: 0;
+    z-index: 1032;
+}
+.pos-right{
+    position: absolute;
+    right: 0px;
+    padding-right: 50px
+}
+
+.pos-logo{
+    position: absolute;
+    left: 536px !important;
+    /* right: 0; */
+}
+
+.dropdown:hover>.login-dropdown{
+    display: block;
+  }
+
+  .logo-img {    
+    height: 45px;
+    width: 70px;
+  }
+
+  .logo-pad-0 {
+      padding: 0px !important;
+  }
+
+  .img-magnifier-container {
+    position: relative;
+  }
+  
+  .img-magnifier-glass {
+    position: absolute;
+    border: 3px solid #000;
+    border-radius: 50%;
+    cursor: none;
+    /*Set the size of the magnifier glass:*/
+    width: 100px;
+    height: 100px;
+  }
+

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'project353';
+
+  @HostListener('window:beforeunload') goToPage() {
+    this.router.navigate(['/']);
+  }
+  
+
+  constructor(
+    private router: Router
+  ) { }
+
 }

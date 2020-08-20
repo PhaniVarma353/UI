@@ -1,0 +1,361 @@
+<div class="container-fluid" class="login-top-margin">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card card-data-height">
+        <div class="card-header card bg-info text-white text-center">Coming up features</div>
+        <div class="card-body">
+
+          <body data-spy="scroll" class="scroll-height" data-target="#myScrollspy" data-offset="1">
+
+            <div class="container-fluid data-cls">
+              <div class="row">
+                <nav class="col-sm-3 col-4" id="myScrollspy">
+                  <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#section1">Section 1</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#section2">Section 2</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#section3">Section 3</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Section 4</a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#section41">Link 1</a>
+                        <a class="dropdown-item" href="#section42">Link 2</a>
+                      </div>
+                    </li>
+                  </ul>
+                </nav>
+                <div class="col-sm-9 col-8 content-data">
+                  <div id="section1" class="bg-success content-data">
+                    <h5>Section 1</h5>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                  </div>
+                  <div id="section2" class="bg-warning content-data">
+                    <h5>Section 2</h5>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                  </div>
+                  <div id="section3" class="bg-secondary content-data">
+                    <h5>Section 3</h5>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                  </div>
+                  <div id="section41" class="bg-danger content-data">
+                    <h5>Section 4-1</h5>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                  </div>
+                  <div id="section42" class="bg-info content-data">
+                    <h5>Section 4-2</h5>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </body>
+
+        </div>
+        <div class="card-footer text-center">
+          <div class="row">
+            <div class="col-sm-8 text-right">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" value="">I accept the Terms & Conditions
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-header card bg-info text-white text-center">Already Member Sign In Here</div>
+        <div class="card-body">
+          <form [formGroup]="loginForm" novalidate>
+            <div class="row">
+              <div class="col-sm-4">
+                <label for="email">User Name:</label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="userName" type="text" [(ngModel)]="user.userName" class="form-control" id="unn"
+                  placeholder="User Name / Email" name="email"
+                  [ngClass]="{ 'is-invalid': loginSubmitted && loginFormControl.userName.errors }">
+                <div *ngIf="loginSubmitted && loginFormControl.userName.errors" class="invalid-feedback">
+                  <div *ngIf="loginFormControl.userName.errors.required">User Name is required</div>
+                </div>
+              </div>
+            </div>
+
+            <br>
+            <div class="row">
+              <div class="col-sm-4">
+                <label for="email">Password:</label>
+              </div>
+              <div class="col-sm-8">
+                <input type="password" formControlName="password" [(ngModel)]="user.password" class="form-control"
+                  placeholder="Enter password" name="pswd"
+                  [ngClass]="{ 'is-invalid': loginSubmitted && loginFormControl.password.errors }">
+                <div *ngIf="loginSubmitted && loginFormControl.password.errors" class="invalid-feedback">
+                  <div *ngIf="loginFormControl.password.errors.required">Password is required</div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-8">
+                <a data-toggle="modal" (click)="resetPasswordModalPopUp()" class="forgetPwd-link"
+                  href="#forgerPasswordModal">Forget password? Reset it here</a>
+              </div>
+              <div class="col-sm-4 text-right">
+                <button *ngIf="showSpinner" class="btn btn-primary text-center" type="button" [disabled]="showSpinner">
+                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                  Sign In
+                </button>
+                <button *ngIf="!showSpinner" type="submit" class="btn btn-primary text-center" (click)="login()">Sign
+                  In</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer text-center">
+          <a data-toggle="modal" (click)="signupModalPopUp()" href="#myModal">Not a Member? <strong>Signup
+              Here</strong></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-imgcaurousel></app-imgcaurousel>
+  <br>
+  <!-- <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+    <div class="row">
+      <nav class="col-sm-3 col-4" id="myScrollspy">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#section1">Section 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section2">Section 2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section3">Section 3</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Section 4</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#section41">Link 1</a>
+              <a class="dropdown-item" href="#section42">Link 2</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="col-sm-9 col-8">
+        <div id="section1" class="bg-success">    
+          <h1>Section 1</h1>
+          <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+        </div>
+        <div id="section2" class="bg-warning"> 
+          <h1>Section 2</h1>
+          <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+        </div>        
+        <div id="section3" class="bg-secondary">         
+          <h1>Section 3</h1>
+          <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+        </div>
+        <div id="section41" class="bg-danger">         
+          <h1>Section 4-1</h1>
+          <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+        </div>      
+        <div id="section42" class="bg-info">         
+          <h1>Section 4-2</h1>
+          <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+        </div>
+      </div>
+    </div>
+  </body> -->
+
+
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-center">Signup</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <form [formGroup]="registerForm" novalidate>
+
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-6 form-group">
+                <label for="email">User Name:</label>
+                <input type="text" formControlName="userName" [(ngModel)]="userSignupDetails.userName"
+                  class="form-control" id="userName" placeholder="User Name" name="usersignupemail1"
+                  [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.userName.errors }">
+                <div *ngIf="registerUserSubmitted && registerFormControl.userName.errors" class="invalid-feedback">
+                  <div *ngIf="registerFormControl.userName.errors.required">User Name is required</div>
+                  <div class="error-text" *ngIf="registerForm.get('userName').hasError('userNameValidation')">
+                    {{registerForm.get('userName').errors['userNameValidation']}}
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="email">Email:</label>
+                <input type="text" formControlName="email" [(ngModel)]="userSignupDetails.email" class="form-control"
+                  id="email" maxlength="80" placeholder="Email Address" name="usersignupemail"
+                  [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.email.errors }">
+                <div *ngIf="registerUserSubmitted && registerFormControl.email.errors" class="invalid-feedback">
+                  <div *ngIf="registerFormControl.email.errors.required">Email is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="email">Password:</label>
+                <input type="password" formControlName="password" [(ngModel)]="userSignupDetails.password"
+                  class="form-control" placeholder="Enter password" name="usersignuppswd"
+                  [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.password.errors }">
+                <div *ngIf="registerUserSubmitted && registerFormControl.password.errors" class="invalid-feedback">
+                  <div *ngIf="registerFormControl.password.errors.required">Password is required</div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="number" formControlName="phoneNumber" [(ngModel)]="userSignupDetails.phoneNumber"
+                  class="form-control" placeholder="Phone Number" name="usersignupphonenumber"
+                  [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.phoneNumber.errors }">
+                <div *ngIf="registerUserSubmitted && registerFormControl.phoneNumber.errors" class="invalid-feedback">
+                  <div *ngIf="registerFormControl.phoneNumber.errors.required">Phone Number is required</div>
+                  <div *ngIf="registerFormControl.phoneNumber.errors.minLenght">Phone Number must be at least 10 digits
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="ConfirmPassword">Confirm Password:</label>
+                <input type="password" formControlName="confirmPassword" [(ngModel)]="userSignupDetails.confirmPassword"
+                  class="form-control" placeholder="Confirm password" name="usersignupcnfpswd"
+                  [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.confirmPassword.errors }">
+                <div *ngIf="registerUserSubmitted && registerFormControl.confirmPassword.errors"
+                  class="invalid-feedback">
+                  <div *ngIf="registerFormControl.confirmPassword.errors.required">Confirm password is required</div>
+                  <div *ngIf="registerFormControl.confirmPassword.errors.mustMatchPassword">Passwords must match</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <div class="col-sm-5 text-right">
+              <div class="form-check">
+                <div *ngIf="registerUserSubmitted && registerFormControl.agreeTerms.errors" class="invalid-feedback">
+                  <div *ngIf="registerFormControl.agreeTerms.errors.required">Email is required</div>
+                </div>
+                <label class="form-check-label">
+                  <input formControlName="agreeTerms" class="form-control" type="checkbox" class="form-check-input"
+                    [(ngModel)]="acceptTerms"
+                    [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.agreeTerms.errors }">I
+                  accept the Terms & Conditions
+                </label>
+              </div>
+            </div>
+            <button type="button" id="signup-close" class="btn btn-danger" data-dismiss="modal"
+              (click)="close()">Close</button>
+
+            <button *ngIf="showSpinner" class="btn btn-primary text-center" type="button" [disabled]="showSpinner">
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Signup
+            </button>
+            <button *ngIf="!showSpinner" type="submit" class="btn btn-primary text-center"
+              (click)="registerUser()">Signup</button>
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  <!-- The Modal -->
+  <div class="modal" id="forgerPasswordModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-center">Reset Password</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <form [formGroup]="resetPasswordForm" novalidate>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="email">Enter Registered Email Address:</label>
+                <input type="text" formControlName="email" [(ngModel)]="resetPasswordDetails.email" class="form-control"
+                  id="forget-email" placeholder="Registered Email Address" name="usersignupemail"
+                  [ngClass]="{ 'is-invalid': resetPasswordSubmitted && resetFormControl.email.errors }">
+                <div *ngIf="resetPasswordSubmitted && resetFormControl.email.errors" class="invalid-feedback">
+                  <div *ngIf="resetFormControl.email.errors.required">Email is required</div>
+                </div>
+              </div>
+            </div>
+            <br>
+
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <div class="col-sm-8 text-right">
+              <div class="form-check">
+                <label class="form-check-label">
+                  Password will be sent to Registered Email Address
+                </label>
+              </div>
+            </div>
+            <button type="button" id="forget-password-close" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+            <button *ngIf="showSpinner" class="btn btn-primary text-center" type="button" [disabled]="showSpinner">
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Reset Password
+            </button>
+            <button *ngIf="!showSpinner" type="submit" class="btn btn-primary text-center"
+              (click)="resetPassword()">Reset Password</button>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>

@@ -1,0 +1,23 @@
+export const Project353Routes = {
+    main: 'main',
+    home: 'home',
+    login: 'login',
+    aboutus: 'aboutus',
+    contactus: 'contactus',
+    services: 'services',
+    clients: 'clients',
+    myhomeview: 'myhomeview',
+    mybusiness: 'mybusiness',
+    myaccount: 'myaccount',
+    manageroles: 'manageroles',
+    manageProject: 'manageproject',
+    manageaccount: 'manageaccount',
+    roles_admin: 'admin',
+    roles_manager: 'manager',
+    roles_user: 'user',
+    activities: 'activities',
+    events: 'events',
+    movies: 'movies',
+    plays: 'plays',
+    sports: 'sports' 
+};

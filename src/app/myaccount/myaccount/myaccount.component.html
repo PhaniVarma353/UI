@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a id="settings" class="nav-link" [class.active]="accountSelectedTabIndex===1" data-toggle="tab" (click)="selectTab(1)">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a id="help" class="nav-link" [class.active]="accountSelectedTabIndex===2" data-toggle="tab" (click)="selectTab(2)">Help & Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled active" data-toggle="tab" (click)="selectTab(3)">FAQ's</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body" *ngIf="accountSelectedTabIndex===1">
+      <h3 class="card-title text-uppercase">{{fullName}}({{userName}})</h3>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <button data-toggle="modal" class="btn btn-primary" (click)="register(2)">Settings</button>
+      <app-settings></app-settings>
+    </div>
+    <div *ngIf="accountSelectedTabIndex===2" class="card-body">
+      <h5 class="card-title">{{fullName}}({{userName}})</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <button data-toggle="modal" class="btn btn-primary" (click)="register(3)">Help & Support</button>
+      <app-helpandsupport></app-helpandsupport>
+    </div>
+    <div *ngIf="accountSelectedTabIndex===3" class="card-body">
+      <h3 class="card-title">{{fullName}}({{userName}})</h3>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <button data-toggle="modal" class="btn btn-primary" (click)="register(4)" href="#myModal">FAQ's</button>
+      <app-faq></app-faq>
+    </div>
+  </div>

@@ -1,0 +1,426 @@
+<div class="card mt-3">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item content-cursor-pointer">
+                <a id="view" class="nav-link active" data-toggle="tab" (click)="selectTab(1)">View Profile</a>
+            </li>
+            <li class="nav-item content-cursor-pointer">
+                <a id="edit" class="nav-link" data-toggle="tab" (click)="selectTab(2)">Edit Profile</a>
+            </li>
+            <li class="nav-item content-cursor-pointer">
+                <a class="nav-link" data-toggle="tab" (click)="selectTab(3)">Change Password</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body" *ngIf="selectedTab===1">
+        <div class="ml-3">
+            <div class="row custom-wrapper">
+                <div class="col-md-12">
+                    <div class="group-gap">
+                        <!-- Upload image -->
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input class="content-display-none" type='file' id="imageUpload"
+                                    accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                            </div>
+                            <div class="img-picture">
+                                <div class="img-preview" id="imagePreview"
+                                    [style.backgroundImage]="'url('+ imageUrl +')'">
+                                </div>
+
+                            </div>
+                            <h4 class="card-title text-capitalize">{{fullName}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label for="viewFullName">Full Name(Display Name):</label>
+                    <input type="text" disabled="true" [(ngModel)]="userViewDetails.fullName" class="form-control"
+                        id="fullName" placeholder="Full Name" name="fullNameView">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="viewUserName">User Name:</label>
+                    <input type="text" disabled="true" [(ngModel)]="userViewDetails.userName" class="form-control"
+                        id="userName" placeholder="User Name" name="usersignupemail1">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="viewUserRole">User Role:</label>
+                    <input type="text" disabled="true" [(ngModel)]="roleName" class="form-control" id="roleName"
+                        placeholder="User Role" name="roleName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label for="viewEmail">Email:</label>
+                    <input type="text" disabled="true" [(ngModel)]="userViewDetails.email" class="form-control"
+                        id="email" maxlength="80" placeholder="Email Address" name="usersignupemail">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="number" disabled="true" [(ngModel)]="userViewDetails.phoneNumber" class="form-control"
+                        placeholder="Phone Number" name="userviewphonenumber">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="gender">Gender: </label><br />
+                    <div class="form-check-inline" *ngFor="let g of genderRadio; let i = index">
+                        <input id="g{{i}}" name="gender" type="radio" [value]="g"
+                            [(ngModel)]="userViewDetails.userAddress.gender" disabled />
+                        <label for="" class="radio-label">{{g}}</label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label for="gender">Marital Status: </label><br />
+                    <div class="form-check-inline" *ngFor="let m of maritalStatusRadio; let i = index">
+                        <input id="m{{i}}" name="married" type="radio" [value]="m"
+                            [(ngModel)]="userViewDetails.userAddress.maritalStatus" disabled />
+                        <label for="" class="radio-label">{{m}}</label>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label for="addressOne">Address Line 1:</label>
+                    <input disabled="true" type="text" [(ngModel)]="userViewDetails.userAddress.addressOne"
+                        class="form-control" id="email" maxlength="800" placeholder="Address line 1" name="addressOne">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="phoneNumber">Address Line 2:</label>
+                    <input disabled="true" type="text" [(ngModel)]="userViewDetails.userAddress.addressTwo"
+                        class="form-control" placeholder="Address line 2" name="addressTwo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label for="landMark">Land Mark:</label>
+                    <input disabled="true" type="text" [(ngModel)]="userViewDetails.userAddress.landMark"
+                        class="form-control" id="email" maxlength="800" placeholder="Land mark" name="landMark">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="phoneNumber">City:</label>
+                    <input disabled="true" type="text" [(ngModel)]="userViewDetails.userAddress.city"
+                        class="form-control" placeholder="City" name="city">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label for="state">State:</label>
+                    <input disabled="true" type="text" [(ngModel)]="userViewDetails.userAddress.state"
+                        class="form-control" id="email" maxlength="800" placeholder="State" name="state">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="phoneNumber">Country:</label>
+                    <input disabled="true" type="text" [(ngModel)]="userViewDetails.userAddress.country"
+                        class="form-control" placeholder="Country" name="addressTwo">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="selectedTab===2" class="card-body">
+        <div class="ml-3">
+            <div class="row custom-wrapper">
+                <div class="col-md-12">
+                    <!-- Form starts -->
+                    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                        <div class="group-gap">
+                            <!-- Upload image -->
+                            <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                    <input class="content-display-none" type='file' id="imageUpload"
+                                        accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                                </div>
+                                <div class="img-picture">
+                                    <div class="img-preview" id="imagePreview"
+                                        [style.backgroundImage]="'url('+ imageUrl +')'">
+                                    </div>
+                                </div>
+                                <h4 class="card-title text-capitalize">{{fullName}}</h4>
+                            </div>
+                        </div>
+
+                        <button type="button" id="removeimg" class="btn btn-danger btn-sm" data-dismiss="modal"
+                            (click)="removeUploadedFile()">Remove</button>
+                        <button type="submit" class="btn btn-primary text-center btn-sm ml-2"
+                            (click)="fileInput.click()">Upload Image</button>
+                    </form><!-- Form ends -->
+                </div>
+            </div>
+        </div>
+        <!-- <h5 class="card-title text-capitalize">{{userName}} : Edit Profile</h5> -->
+        <form [formGroup]="settingsForm" novalidate>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label for="fulName">Full Name(Display Name):</label>
+                        <input type="text" formControlName="fullName" [(ngModel)]="userDetails.fullName"
+                            class="form-control" id="fullName" placeholder="Full Name" name="fullName"
+                            [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.fullName.errors }">
+                        <div *ngIf="settingsSubmitted && settingsFormControl.fullName.errors" class="invalid-feedback">
+                            <div *ngIf="settingsFormControl.fullName.errors.required">Full Name is required</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="userName">User Name:</label>
+                        <input type="text" formControlName="userName" [(ngModel)]="userDetails.userName"
+                            class="form-control" id="userName" placeholder="User Name" name="usersignupemail1"
+                            [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.userName.errors }">
+                        <div *ngIf="settingsSubmitted && settingsFormControl.userName.errors" class="invalid-feedback">
+                            <div *ngIf="settingsFormControl.userName.errors.required">User Name is required</div>
+                            <div class="error-text" *ngIf="settingsForm.get('userName').hasError('userNameValidation')">
+                                {{settingsForm.get('userName').errors['userNameValidation']}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="userRole">User Role:</label>
+                        <input type="text" formControlName="roleName" [(ngModel)]="roleName" class="form-control"
+                            id="roleName" placeholder="User Name" name="roleName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="email">Email:</label>
+                        <input type="text" formControlName="email" [(ngModel)]="userDetails.email" class="form-control"
+                            id="email" maxlength="80" placeholder="Email Address" name="usersignupemail"
+                            [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.email.errors }">
+                        <div *ngIf="settingsSubmitted && settingsFormControl.email.errors" class="invalid-feedback">
+                            <div *ngIf="settingsFormControl.email.errors.required">Email is required</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <input type="number" formControlName="phoneNumber" [(ngModel)]="userDetails.phoneNumber"
+                            class="form-control" placeholder="Phone Number" name="usersignupphonenumber"
+                            [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.phoneNumber.errors }">
+                        <div *ngIf="settingsSubmitted && settingsFormControl.phoneNumber.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="settingsFormControl.phoneNumber.errors.required">Phone Number is required</div>
+                            <div *ngIf="settingsFormControl.phoneNumber.errors.minLenght">Phone Number must be at least
+                                10 digits
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="gender">Gender: </label><br />
+                        <div class="form-check-inline" *ngFor="let g of genderRadio; let i = index">
+                            <input formControlName="gender" id="g{{i}}" name="gender" type="radio" [value]="g"
+                                [(ngModel)]="userDetails.userAddress.gender"
+                                [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.gender.errors }" />
+                            <label for="" class="radio-label">{{g}}</label>
+                        </div>
+                        <div *ngIf="settingsSubmitted && settingsFormControl.gender.errors"
+                            class="invalid-feedback error-display-block">
+                            <div *ngIf="settingsFormControl.gender.errors.required">Gender is required</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="gender">Marital Status: </label><br />
+                        <div class="form-check-inline" *ngFor="let m of maritalStatusRadio; let i = index">
+                            <input formControlName="married" id="m{{i}}" name="married" type="radio" [value]="m"
+                                [(ngModel)]="userDetails.userAddress.maritalStatus"
+                                [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.married.errors }" />
+                            <label for="" class="radio-label">{{m}}</label>
+                        </div>
+                        <div *ngIf="settingsSubmitted && settingsFormControl.married.errors"
+                            class="invalid-feedback error-display-block">
+                            <div *ngIf="settingsFormControl.married.errors.required">Marital Status is required</div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label for="addressOne">Address Line 1:</label>
+                        <input type="text" formControlName="addressOne" [(ngModel)]="userDetails.userAddress.addressOne"
+                            class="form-control" id="email" maxlength="800" placeholder="Address line 1"
+                            name="addressOne"
+                            [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.addressOne.errors }">
+                        <div *ngIf="settingsSubmitted && settingsFormControl.addressOne.errors"
+                            class="invalid-feedback error-display-block">
+                            <div *ngIf="settingsFormControl.addressOne.errors.required">Address line 1 is required</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="phoneNumber">Address Line 2:</label>
+                        <input type="text" formControlName="addressTwo" [(ngModel)]="userDetails.userAddress.addressTwo"
+                            class="form-control" placeholder="Address line 2" name="addressTwo"
+                            [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.addressTwo.errors }">
+                        <div *ngIf="settingsSubmitted && settingsFormControl.addressTwo.errors"
+                            class="invalid-feedback error-display-block">
+                            <div *ngIf="settingsFormControl.addressTwo.errors.required">Address Line 2 is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label for="landMark">Land Mark:</label>
+                        <input type="text" formControlName="landMark" [(ngModel)]="userDetails.userAddress.landMark"
+                            class="form-control" id="email" maxlength="800" placeholder="Land mark" name="landMark"
+                            [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.landMark.errors }">
+                        <div *ngIf="settingsSubmitted && settingsFormControl.landMark.errors"
+                            class="invalid-feedback error-display-block">
+                            <div *ngIf="settingsFormControl.landMark.errors.required">Land Mark is required</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="city">City:</label>
+                        <select placeholder="Select" [(ngModel)]="userDetails.userAddress.city" class="form-control"
+                            formControlName="city" name="city" (ngModelChange)="onStateSelection()"
+                            [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.city.errors }">
+                            <option [ngValue]="undefined" disabled>Select City </option>
+                            <option *ngFor="let city of citiesList" [ngValue]="city.name" class="text-uppercase" [selected]="selectedCity">{{city.name | uppercase}}</option>
+                        </select>
+                        <div *ngIf="settingsSubmitted && settingsFormControl.city.errors"
+                            class="invalid-feedback error-display-block">
+                            <div *ngIf="settingsFormControl.city.errors.required">City is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label for="name">State:</label>
+                        <select placeholder="Select" [(ngModel)]="userDetails.userAddress.state" class="form-control"
+                            formControlName="state" name="state" (ngModelChange)="stateChange($event)"
+                            [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.state.errors }">
+                            <option [ngValue]="undefined" [selected]="selectedCity" disabled>Select State </option>
+                            <option *ngFor="let state of statesList" [ngValue]="state.name" class="text-uppercase" [selected]="state.name === selectedState">{{state.name}}</option>
+                        </select>
+                        <div *ngIf="settingsSubmitted && settingsFormControl.state.errors"
+                            class="invalid-feedback error-display-block">
+                            <div *ngIf="settingsFormControl.state.errors.required">State is required</div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 form-group">
+                        <label for="name">Country:</label>
+                        <select placeholder="Select" (change)="countryChange($event)" [(ngModel)]="userDetails.userAddress.country" class="form-control"
+                            formControlName="country" name="country"
+                            [ngClass]="{ 'is-invalid': settingsSubmitted && settingsFormControl.country.errors }">
+                            <option [ngValue]="undefined" disabled>Select Country </option>
+                            <option *ngFor="let country of countryList" [value]="country.name" [selected]="country.name === selectedCountry">{{country.name | uppercase}}</option>
+                        </select>
+                        <!-- <div *ngIf="settingsSubmitted && settingsFormControl.country.errors"
+                            class="invalid-feedback error-display-block">
+                            <div *ngIf="settingsFormControl.country.errors.required">Country is required</div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" id="signup-close" class="btn btn-danger" data-dismiss="modal"
+                    (click)="close()">Close</button>
+
+                <button *ngIf="showSpinner" class="btn btn-primary text-center" type="button" [disabled]="showSpinner">
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Save
+                </button>
+                <button *ngIf="!showSpinner" type="submit" class="btn btn-primary text-center"
+                    (click)="saveSettings()">Save</button>
+            </div>
+        </form>
+    </div>
+    <div class="card-body" *ngIf="selectedTab===3">
+        <div class="ml-3">
+            <div class="row custom-wrapper">
+                <div class="col-md-12">
+                    <div class="group-gap">
+                        <!-- Upload image -->
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input class="content-display-none" type='file' id="imageUpload"
+                                    accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                            </div>
+                            <div class="img-picture">
+                                <div class="img-preview" id="imagePreview"
+                                    [style.backgroundImage]="'url('+ imageUrl +')'">
+                                </div>
+                            </div>
+                            <h4 class="card-title text-capitalize">{{fullName}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <h5 class="card-title text-capitalize">{{userName}} : Change password</h5> -->
+        <form [formGroup]="changePasswordForm" novalidate>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label for="oldPassword">Old Password:</label>
+                        <input type="text" formControlName="oldPassword" [(ngModel)]="changePasswordDetails.oldPassword"
+                            class="form-control" id="oldPassword" placeholder="Old Password" name="oldPassword"
+                            [ngClass]="{ 'is-invalid': changePasswordSubmitted && changePasswordFormControl.oldPassword.errors }">
+                        <div *ngIf="changePasswordSubmitted && changePasswordFormControl.oldPassword.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="changePasswordFormControl.oldPassword.errors.required">Old Password is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="fullname">Full Name(Display Name):</label>
+                        <input type="text" formControlName="fullName" [(ngModel)]="fullName" class="form-control"
+                            id="fullName" placeholder="Full Name" name="fullName">
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="userRole">User Role:</label>
+                        <input type="text" formControlName="roleName" [(ngModel)]="roleName" class="form-control"
+                            id="roleName" placeholder="User Name" name="roleName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="email">New Password:</label>
+                        <input type="password" formControlName="newPassword"
+                            [(ngModel)]="changePasswordDetails.newPassword" class="form-control"
+                            placeholder="New password" name="newPassword"
+                            [ngClass]="{ 'is-invalid': changePasswordSubmitted && changePasswordFormControl.newPassword.errors }">
+                        <div *ngIf="changePasswordSubmitted && changePasswordFormControl.newPassword.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="changePasswordFormControl.newPassword.errors.required">New Password is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label for="ConfirmPassword">Confirm Password:</label>
+                        <input type="password" formControlName="confirmPassword"
+                            [(ngModel)]="changePasswordDetails.confirmPassword" class="form-control"
+                            placeholder="Confirm password" name="confirmPassword"
+                            [ngClass]="{ 'is-invalid': changePasswordSubmitted && changePasswordFormControl.confirmPassword.errors }">
+                        <div *ngIf="changePasswordSubmitted && changePasswordFormControl.confirmPassword.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="changePasswordFormControl.confirmPassword.errors.required">Confirm password is
+                                required</div>
+                            <div *ngIf="changePasswordFormControl.confirmPassword.errors.mustMatchPassword">Passwords
+                                must match</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button *ngIf="showSpinner" class="btn btn-primary text-center" type="button" [disabled]="showSpinner">
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Change Password
+                </button>
+                <button *ngIf="!showSpinner" type="submit" class="btn btn-primary text-center"
+                    (click)="changePassword()">Change Password</button>
+            </div>
+        </form>
+    </div>
+</div>

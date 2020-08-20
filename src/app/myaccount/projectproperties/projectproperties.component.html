@@ -1,0 +1,87 @@
+<h5 class="card-title">Manage Project Properties</h5>
+<form [formGroup]="projectPropertiesForm" novalidate>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="name">Property Name:</label>
+                <input type="text" formControlName="propertyName" [(ngModel)]="projectPropertiesRequest.propertyName"
+                    class="form-control" id="propertyName" placeholder="Property Name" name="propertyName"
+                    [ngClass]="{ 'is-invalid': projectPropertiesSubmitted && projectPropertiesFormControl.propertyName.errors }">
+                <div *ngIf="projectPropertiesSubmitted && projectPropertiesFormControl.propertyName.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="projectPropertiesFormControl.propertyName.errors.required">Property Name is required
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="name">Property Type:</label>
+                <select placeholder="Select" [(ngModel)]="projectPropertiesRequest.type" class="form-control"
+                    formControlName="type" name="type" (ngModelChange)="onTypeSelected()"
+                    [ngClass]="{ 'is-invalid': projectPropertiesSubmitted && projectPropertiesFormControl.type.errors }">
+                    <option *ngFor="let type of typeList" [ngValue]="type" class="text-uppercase">{{type}}</option>
+                </select>
+                <div *ngIf="projectPropertiesSubmitted && projectPropertiesFormControl.type.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="projectPropertiesFormControl.type.errors.required">Property type is required
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selectedType==='image'" class="row">
+            <div class="col-sm-6 form-group">
+                <div class="row custom-wrapper">
+                    <div class="col-md-12">
+                        <button type="button" id="removeimg" class="btn btn-danger btn-sm" data-dismiss="modal"
+                            (click)="removeUploadedFile()">Remove</button>
+                        <button type="submit" class="btn btn-primary text-center btn-sm ml-2"
+                            (click)="fileInput.click()">Upload Image</button>
+                        <br>
+                        <div [ngClass]="{ 'is-invalid': projectPropertiesSubmitted && this.projectPropertiesRequest.type === 'image' && !this.uploadImage }"
+                            *ngIf="projectPropertiesSubmitted && this.projectPropertiesRequest.type === 'image' && !this.uploadImage"
+                            class="invalid-feedback content-display-block">
+                            <div *ngIf="this.projectPropertiesRequest.type === 'image' && !this.uploadImage">Upload
+                                image is required
+                            </div>
+                        </div>
+                        <!-- Form starts -->
+                        <div class="group-gap">
+                            <!-- Upload image -->
+                            <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                    <input class="content-display-none" type='file' id="imageUpload"
+                                        accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                                </div>
+                                <br>
+                                <div *ngIf="uploadImage" class="">
+                                    <img src="{{imageUrl}}" alt="Girl in a jacket" width="500" height="333">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="selectedType==='text'" class="row">
+            <div *ngIf="!uploadImage" class="col-sm-6 form-group">
+                <label for="fullname">Value:</label>
+                <textarea formControlName="value" [(ngModel)]="projectPropertiesRequest.value" class="form-control"
+                    id="value" placeholder="Full Name" name="value" rows="3"
+                    [ngClass]="{ 'is-invalid': projectPropertiesSubmitted && projectPropertiesRequest.value.length === 0 }"></textarea>
+                <div *ngIf="projectPropertiesSubmitted && projectPropertiesRequest.value.length === 0"
+                    class="invalid-feedback">
+                    <div *ngIf="projectPropertiesRequest.value.length === 0">Value is required
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button *ngIf="!showSpinner" type="submit" class="btn btn-primary text-center" (click)="save()">Save</button>
+    </div>
+</form>

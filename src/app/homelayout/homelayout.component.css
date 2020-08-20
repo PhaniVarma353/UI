@@ -1,0 +1,56 @@
+/* Make the image fully responsive */
+.carousel-inner img{
+  width: 100%;
+  height: 80%;
+}
+
+.btn-border-0 {
+  /* border: 0px; */
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: absolute;
+  z-index: 1;
+  top: 300;
+  left: 7;
+  overflow-x: hidden;
+  padding-top: 20px !important;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+  background-color: #28a745;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+.card-img-height {
+  height: 50% !important;
+}
+
+.text-overlay {
+  overflow-y: auto;
+}

@@ -1,0 +1,123 @@
+ <!-- The Modal -->
+ <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-center">Signup</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <form [formGroup]="registerForm" novalidate>
+
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-6 form-group">
+                <label for="email">Full Name(Display Name):</label>
+                <input type="text" formControlName="fullName" [(ngModel)]="userSignupDetails.fullName"
+                  class="form-control" id="fullName" placeholder="Full Name" name="userFullName"
+                  [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.fullName.errors }">
+                <div *ngIf="registerUserSubmitted && registerFormControl.fullName.errors" class="invalid-feedback">
+                  <div *ngIf="registerFormControl.fullName.errors.required">Full Name is required</div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 form-group">
+                <label for="email">User Name:</label>
+                <input type="text" formControlName="userName" [(ngModel)]="userSignupDetails.userName"
+                  class="form-control" id="userName" placeholder="User Name" name="usersignupemail1"
+                  [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.userName.errors }">
+                <div *ngIf="registerUserSubmitted && registerFormControl.userName.errors" class="invalid-feedback">
+                  <div *ngIf="registerFormControl.userName.errors.required">User Name is required</div>
+                  <div class="error-text" *ngIf="registerForm.get('userName').hasError('userNameValidation')">
+                    {{registerForm.get('userName').errors['userNameValidation']}}
+                  </div>
+
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="row"><div class="col-sm-6">
+              <label for="email">Email:</label>
+              <input type="text" formControlName="email" [(ngModel)]="userSignupDetails.email" class="form-control"
+                id="email" maxlength="80" placeholder="Email Address" name="usersignupemail"
+                [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.email.errors }">
+              <div *ngIf="registerUserSubmitted && registerFormControl.email.errors" class="invalid-feedback">
+                <div *ngIf="registerFormControl.email.errors.required">Email is required</div>
+              </div>
+            </div>
+              
+              <div class="col-sm-6">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="number" formControlName="phoneNumber" [(ngModel)]="userSignupDetails.phoneNumber"
+                  class="form-control" placeholder="Phone Number" name="usersignupphonenumber"
+                  [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.phoneNumber.errors }">
+                <div *ngIf="registerUserSubmitted && registerFormControl.phoneNumber.errors" class="invalid-feedback">
+                  <div *ngIf="registerFormControl.phoneNumber.errors.required">Phone Number is required</div>
+                  <div *ngIf="registerFormControl.phoneNumber.errors.minLenght">Phone Number must be at least 10 digits
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="email">Password:</label>
+                <input type="password" formControlName="password" [(ngModel)]="userSignupDetails.password"
+                  class="form-control" placeholder="Enter password" name="usersignuppswd"
+                  [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.password.errors }">
+                <div *ngIf="registerUserSubmitted && registerFormControl.password.errors" class="invalid-feedback">
+                  <div *ngIf="registerFormControl.password.errors.required">Password is required</div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label for="ConfirmPassword">Confirm Password:</label>
+                <input type="password" formControlName="confirmPassword" [(ngModel)]="userSignupDetails.confirmPassword"
+                  class="form-control" placeholder="Confirm password" name="usersignupcnfpswd"
+                  [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.confirmPassword.errors }">
+                <div *ngIf="registerUserSubmitted && registerFormControl.confirmPassword.errors"
+                  class="invalid-feedback">
+                  <div *ngIf="registerFormControl.confirmPassword.errors.required">Confirm password is required</div>
+                  <div *ngIf="registerFormControl.confirmPassword.errors.mustMatchPassword">Passwords must match</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <div class="col-sm-5 text-right">
+              <div class="form-check">
+                <div *ngIf="registerUserSubmitted && registerFormControl.agreeTerms.errors" class="invalid-feedback">
+                  <div *ngIf="registerFormControl.agreeTerms.errors.required">Email is required</div>
+                </div>
+                <label class="form-check-label">
+                  <input formControlName="agreeTerms" class="form-control" type="checkbox" class="form-check-input"
+                    [(ngModel)]="acceptTerms"
+                    [ngClass]="{ 'is-invalid': registerUserSubmitted && registerFormControl.agreeTerms.errors }">I
+                  accept the Terms & Conditions
+                </label>
+              </div>
+            </div>
+            <button type="button" id="signup-close" class="btn btn-danger" data-dismiss="modal"
+              (click)="close()">Close</button>
+
+            <button *ngIf="showSpinner" class="btn btn-primary text-center" type="button" [disabled]="showSpinner">
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Signup
+            </button>
+            <button *ngIf="!showSpinner" type="submit" class="btn btn-primary text-center"
+              (click)="registerUser()">Signup</button>
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>

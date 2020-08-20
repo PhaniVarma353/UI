@@ -1,0 +1,59 @@
+<body>
+
+  <div class="navbar navbar-expand-sm|md|lg|xl header bg-info justify-content-between fixed-top">
+    <a (click)="navigateToAboutUs()" class="logo text-white">Project <img class="img-fluid"
+        src="https://picsum.photos/285/200/?image=0&random" class="logo-img" alt="Cinque Terre"> 353</a>
+    <div class="form-inline header-search">
+      <input class="form-control mr-sm-2 mr-md-2 mr-lg-2 mr-xl-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0 text-white btn-border-0">Search</button>
+    </div>
+    <div class="navbar navbar-expand-sm|md|lg|xl header-right text-white">
+      <button class="btn btn-outline-success my-2 my-sm-0 text-white btn-border-0" (click)="navigateToHome()"><i
+          class="fa fa-fw fa-home"></i> Home</button>
+      <button class="btn btn-outline-success my-2 my-sm-0 text-white btn-border-0" (click)="navigateToHome()"><i
+          class="fa fa-fw fa-search text-white"></i> FAQ's</button>
+      <button class="btn btn-outline-success my-2 my-sm-0 text-white btn-border-0" (click)="navigateToContactUs()"><i
+          class="fa fa-fw fa-envelope"></i> Contact</button>
+      <button *ngIf="!loginStatus" class="btn btn-outline-success my-2 my-sm-0 text-white btn-border-0 user-logo-text" (click)="navigateToLogin()"><i
+          class="fa fa-fw fa-user text-white"></i>Sign in</button>
+          <button *ngIf="loginStatus" class="btn btn-outline-success my-2 my-sm-0 text-white btn-border-0 user-logo-text"  data-placement="top" title="{{fullName}}" (click)="openAccountSideNav()"><i
+            class="fa fa-fw fa-user text-white" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false"
+            data-toggle="dropdown" style='font-size:20px; width: 24%;' aria-hidden="true"></i>Hi {{fullName}}</button>
+            
+      <div class="dropdown-menu dropdown-menu-left user-dropdown" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Link 1</a>
+        <a class="dropdown-item" href="#">Link 2</a>
+        <a class="dropdown-item" href="#">Link 3</a>
+      </div>
+   
+      <button class="btn btn-outline-success my-2 my-sm-0 text-white btn-border-0" (click)="openNav()"><span
+          class="side-nav-opt">&#9776; </span></button>
+    </div>
+  </div>
+
+  <div id="mySidenav" class="sidenav">
+    <!-- <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a> -->
+    <a (click)="navigateToAboutUs()">About us</a>
+    <a (click)="navigateToServices()">Services</a>
+    <a (click)="navigateToClients()">Clients</a>
+    <a (click)="navigateToContactUs()" [ngClass]="{'isDisabled' : !accessManageRoles}">Contact</a>
+    <a *ngIf="loginStatus && accessManageRoles" href="javascript:void(0)" [ngClass]="{'isDisabled' : !loginStatus || !accessManageRoles}" (click)="manageUsers()">Manage Users</a>
+    <a *ngIf="loginStatus && accessManageProject" href="javascript:void(0)" [ngClass]="{'isDisabled' : !loginStatus || !accessManageProject}" (click)="manageProject()">Manage Project</a>
+
+  </div>
+
+
+  <div id="accountSidenav" class="sidenav">
+    <!-- <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a> -->
+    <a (click)="navigateToHelpAndSupport(2)">Help & Support</a>
+    <a (click)="navigateToSettings(1)">Settings</a>
+    <div class="text-center">
+    <button class="btn btn-outline-success my-2 my-sm-0 text-white btn-border-0" (click)="signOut()"><i
+      class="fa fa-fw fa-envelope"></i> Sign out </button>
+      </div>
+    <!-- <a (click)="navigateToClients()">Clients</a>
+    <a (click)="navigateToContactUs()" [ngClass]="{'isDisabled' : !accessManageRoles}">Contact</a>
+    <a *ngIf="loginStatus && accessManageRoles" href="javascript:void(0)" [ngClass]="{'isDisabled' : !loginStatus || !accessManageRoles}" (click)="manageUsers()">Manage Users</a> -->
+  </div>
+
+</body>

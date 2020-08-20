@@ -1,0 +1,72 @@
+.image-style {
+  height: 200px;
+  background: #aaa;
+}
+
+body {
+  position: relative;
+}
+ul.nav-pills {
+  top: 20px;
+  position: fixed;
+}
+div.col-8 div {
+  height: 500px;
+}
+
+.login-top-margin {
+  margin-top: 30px;
+}
+
+.forgetPwd-link {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.width-cls {
+  width: 500px;
+}
+::ng-deep .toast-container {
+  width: 500px !important;
+}
+
+/* Coming up content */
+
+body {
+  position: relative;
+}
+ul.nav-pills {
+  top: -14px;
+  position: relative;
+}
+div.col-8 div {
+  height: 500px !important;
+}
+
+.data-cls {
+  height: 160px !important;
+}
+
+.card-data-height {
+  height: 305 !important;
+}
+
+.content-data {
+  height: 180px !important;
+  overflow-y: overlay;
+}
+
+.scroll-height {
+  height: 165px;
+}
+
+.nav-pills-width {
+  flex: 0 0 25%;
+  max-width: 23%;
+}

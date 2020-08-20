@@ -1,0 +1,172 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+.header {
+  overflow: hidden;
+  padding: 0px;
+  width: auto;
+}
+
+.header-fixed-top {
+  position: fixed;
+  top: 0px;
+  right: 0;
+  left: 0;
+  z-index: 1032;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  background-color: #28a745;
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+.header-search {
+  left: 205px !important;
+  position: absolute;
+}
+
+.btn-border-0 {
+  border: 0px;
+}
+
+.logo-img {
+  height: 25px;
+  width: 35px;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .header-right {
+    float: none;
+  }
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 100px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-top: 80px;
+  /* margin-left: 50px; */
+}
+
+.side-nav-opt {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 105px;
+  }
+  .sidenav a {
+    font-size: 16px;
+  }
+}
+
+.user-logo-text {
+  width: 93px;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
+}
+
+.dropdown-menu {
+  position: fixed;
+    top: 15%;
+    width: 20px;
+    right: 60px;
+    left: 1138px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #98b0d4;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown:hover>.user-dropdown{
+  display: none;
+}
+
+.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+  pointer-events: none;
+}

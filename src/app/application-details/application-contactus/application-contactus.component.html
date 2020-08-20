@@ -1,0 +1,72 @@
+<div class="">
+  <div style="text-align:center">
+    <h2>Drop a Line</h2>
+    <p><i class="fa fa-fw fa-envelope"></i>Don't hesitate to contact us.</p>
+    <p>Swing by for a cup of coffee, or leave us a message</p>
+  </div>
+  <div class="row">
+    <div class="col-sm-7 mt-3">
+      <div>
+        <img src="{{imageUrl}}" alt="Girl in a jacket" width="735" height="500">
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <form [formGroup]="contactusForm" novalidate>
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="name">Full Name:</label>
+              <input type="text" formControlName="fullName" [(ngModel)]="contactus.fullName" class="form-control"
+                id="fullName" placeholder="Full Name" name="fullName"
+                [ngClass]="{ 'is-invalid': contactusSubmitted && contactusFormControl.fullName.errors }">
+              <div *ngIf="contactusSubmitted && contactusFormControl.fullName.errors" class="invalid-feedback">
+                <div *ngIf="contactusFormControl.fullName.errors.required">Full Name is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="name">Email:</label>
+              <input type="text" formControlName="email" [(ngModel)]="contactus.email" class="form-control" id="email"
+                placeholder="Email" name="email"
+                [ngClass]="{ 'is-invalid': contactusSubmitted && contactusFormControl.email.errors }">
+              <div *ngIf="contactusSubmitted && contactusFormControl.email.errors" class="invalid-feedback">
+                <div *ngIf="contactusFormControl.email.errors.required">Email is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-12">
+              <label for="name">Phone Number:</label>
+              <input type="text" formControlName="phoneNumber" [(ngModel)]="contactus.phoneNumber" class="form-control"
+                id="phoneNumber" placeholder="Phone Number" name="phoneNumber"
+                [ngClass]="{ 'is-invalid': contactusSubmitted && contactusFormControl.phoneNumber.errors }">
+              <div *ngIf="contactusSubmitted && contactusFormControl.phoneNumber.errors" class="invalid-feedback">
+                <div *ngIf="contactusFormControl.phoneNumber.errors.required">Phone Number is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+          <div class="form-group col-sm-12">
+            <label for="message">Message:</label>
+            <textarea formControlName="message" [(ngModel)]="contactus.message" class="form-control" id="message"
+              placeholder="Message" name="message" rows="3"
+              [ngClass]="{ 'is-invalid': contactusSubmitted && contactusFormControl.message.errors }"></textarea>
+            <div *ngIf="contactusSubmitted && contactusFormControl.message.errors" class="invalid-feedback">
+              <div *ngIf="contactusFormControl.message.errors.required">Message is required
+              </div>
+            </div>
+          </div>
+          </div>
+
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button *ngIf="!showSpinner" type="submit" class="btn btn-primary text-center" (click)="save()">Send Message</button>
+      </div>
+    </div>
+  </div>
+</div>
