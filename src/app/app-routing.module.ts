@@ -31,6 +31,9 @@ import { ImgcaurouselComponent } from './common/imgcaurousel/imgcaurousel.compon
 import { HeadertwoComponent } from './common/headertwo/headertwo.component';
 import { ManageroleSuperadminComponent } from './myaccount/managerole-superadmin/managerole-superadmin.component';
 import { ProjectpropertiesComponent } from './myaccount/projectproperties/projectproperties.component';
+import { accountstatusenum } from './shared/accountstatusenum';
+import { userroleenum } from './shared/userroleenum';
+import { userroleenumname } from './shared/userroelenumname';
 
 const routes: Routes = [
     {
@@ -161,5 +164,8 @@ export const ProjComponents = [
     MyaccountComponent,
     ManageroleSuperadminComponent,
     ProjectpropertiesComponent,
+    userroleenumname,
+    userroleenum,
+    accountstatusenum,
 ];
 
