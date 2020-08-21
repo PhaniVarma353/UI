@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Project353Routes } from 'src/app/app.component.routes';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { LoginUtilityService } from 'src/app/shared/services/loginutilityservice';
-import { UserRoleType } from 'src/app/shared/userroleenum';
+import { userroleenum } from 'src/app/shared/userroleenum';
 
 @Component({
   selector: 'app-headerone',
@@ -39,11 +39,11 @@ export class HeaderoneComponent implements OnInit {
           this.loginStatus = true;
           this.accessManageProject = false;
           this.accessManageRoles = false;
-          if (this.userRole === UserRoleType.SUPERADMIN || this.userRole === UserRoleType.ADMIN
-            || this.userRole === UserRoleType.MANAGER) {
+          if (this.userRole === userroleenum.SUPERADMIN || this.userRole === userroleenum.ADMIN
+            || this.userRole === userroleenum.MANAGER) {
             this.accessManageRoles = true;
           }
-          if (this.userRole === UserRoleType.SUPERADMIN || this.userRole === UserRoleType.ADMIN) {
+          if (this.userRole === userroleenum.SUPERADMIN || this.userRole === userroleenum.ADMIN) {
             this.accessManageProject = true;
           }
         } else {

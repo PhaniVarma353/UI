@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserNameValidation } from 'src/app/helpers/username-validation';
 import { MustMatchPassword } from 'src/app/helpers/must-match-password';
 import { ToastrService } from 'ngx-toastr';
-import { UserRoleType } from '../userroleenum';
 import { UserService } from 'src/app/services/user-service';
 import { UserInfo } from 'src/app/interfaces/User';
 import { IRolesInputData } from 'src/app/interfaces/RolesInterface';

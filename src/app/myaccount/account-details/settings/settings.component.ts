@@ -9,9 +9,10 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { LoginUtilityService } from 'src/app/shared/services/loginutilityservice';
 import { LoginService } from 'src/app/services/login-service';
 import { ChangePasswordRequest, ChangePasswordResponse } from 'src/app/interfaces/ChangePasswordDetails';
-import { UserRoleTypeName, UserRoleType } from 'src/app/shared/userroleenum';
 import { ProjectPropertiesService } from 'src/app/services/project-properties-service';
 import { AddressService } from 'src/app/services/address-service';
+import { userroleenum } from 'src/app/shared/userroleenum';
+import { userroleenumname } from 'src/app/shared/userroelenumname';
 
 
 @Component({
@@ -95,14 +96,14 @@ export class SettingsComponent implements OnInit {
         this.userName = userLoginData.userName;
         this.fullName = userLoginData.fullName;
         this.userRole = userLoginData.userRole;
-        if (this.userRole === UserRoleType.SUPERADMIN) {
-          this.roleName = UserRoleTypeName.SUPERADMIN;
-        } else if (this.userRole === UserRoleType.ADMIN) {
-          this.roleName = UserRoleTypeName.ADMIN;
-        } else if (this.userRole === UserRoleType.MANAGER) {
-          this.roleName = UserRoleTypeName.MANAGER;
+        if (this.userRole === userroleenum.SUPERADMIN) {
+          this.roleName = userroleenumname.SUPERADMIN;
+        } else if (this.userRole === userroleenum.ADMIN) {
+          this.roleName = userroleenumname.ADMIN;
+        } else if (this.userRole === userroleenum.MANAGER) {
+          this.roleName = userroleenumname.MANAGER;
         } else {
-          this.roleName = UserRoleTypeName.USER;
+          this.roleName = userroleenumname.USER;
         } 
         this.userId = userLoginData.uid;
         this.getUserById(this.userId);

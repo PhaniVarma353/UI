@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { IRolesInputData } from 'src/app/interfaces/RolesInterface';
-import { UserRoleType, UserRoleTypeName } from 'src/app/shared/userroleenum';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { LoginUtilityService } from 'src/app/shared/services/loginutilityservice';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user-service';
 import { UserDetails } from 'src/app/interfaces/UserDetails';
+import { userroleenum } from 'src/app/shared/userroleenum';
+import { userroleenumname } from 'src/app/shared/userroelenumname';
 
 @Component({
   selector: 'app-manage-roles',
@@ -70,11 +71,11 @@ export class ManageRolesComponent implements OnInit {
       data => {
         debugger;
         console.log(data);
-        if (role === UserRoleType.SUPERADMIN) {
+        if (role === userroleenum.SUPERADMIN) {
           this.superAdminList = data;
-        } else if (role === UserRoleType.ADMIN) {
+        } else if (role === userroleenum.ADMIN) {
           this.adminList = data;
-        } else if (role === UserRoleType.MANAGER) {
+        } else if (role === userroleenum.MANAGER) {
           this.managerList = data;
         } else {
           this.userList = data;
@@ -86,11 +87,11 @@ export class ManageRolesComponent implements OnInit {
 
   selectRole(role: number) {
     this, this.roleTab = role;
-    if ((this.superAdminList ===undefined || this.superAdminList.length === 0) && role === UserRoleType.SUPERADMIN) {
+    if ((this.superAdminList ===undefined || this.superAdminList.length === 0) && role === userroleenum.SUPERADMIN) {
       this.getAllUsersOnRole(this.roleTab);
-    } else if ((this.adminList === undefined || this.adminList.length === 0) && role === UserRoleType.ADMIN) {
+    } else if ((this.adminList === undefined || this.adminList.length === 0) && role === userroleenum.ADMIN) {
       this.getAllUsersOnRole(this.roleTab);
-    } else if ((this.managerList === undefined || this.managerList.length === 0) && role === UserRoleType.MANAGER) {
+    } else if ((this.managerList === undefined || this.managerList.length === 0) && role === userroleenum.MANAGER) {
       this.getAllUsersOnRole(this.roleTab);
     } else {
       if (this.userList === undefined || this.userList.length === 0)
@@ -102,14 +103,14 @@ export class ManageRolesComponent implements OnInit {
   register(role: number) {
     this.roleInputData.createdByRole = this.createdByRole;
     this.roleInputData.createRole = role;
-    if (role === UserRoleType.SUPERADMIN) {
-      this.roleInputData.roleName = UserRoleTypeName.SUPERADMIN;
-    } else if (role === UserRoleType.ADMIN) {
-      this.roleInputData.roleName = UserRoleTypeName.ADMIN;
-    } else if (role === UserRoleType.MANAGER) {
-      this.roleInputData.roleName = UserRoleTypeName.MANAGER;
+    if (role === userroleenum.SUPERADMIN) {
+      this.roleInputData.roleName = userroleenumname.SUPERADMIN;
+    } else if (role === userroleenum.ADMIN) {
+      this.roleInputData.roleName = userroleenumname.ADMIN;
+    } else if (role === userroleenum.MANAGER) {
+      this.roleInputData.roleName = userroleenumname.MANAGER;
     } else {
-      this.roleInputData.roleName = UserRoleTypeName.USER;
+      this.roleInputData.roleName = userroleenumname.USER;
     }
     this.showRegistration = true;
   }

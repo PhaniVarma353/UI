@@ -12,7 +12,7 @@ import { ResetPasswordDetails } from 'src/app/interfaces/ResetPasswordDetails';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Project353Routes } from 'src/app/app.component.routes';
 import { LoginUtilityService } from 'src/app/shared/services/loginutilityservice';
-import { UserRoleType } from 'src/app/shared/userroleenum';
+import { userroleenum } from 'src/app/shared/userroleenum';
 
 @Component({
   selector: 'app-mylogin',
@@ -138,10 +138,10 @@ export class MyloginComponent implements OnInit {
         } else if (data.status === true && data.accountStatus === 1) {
           this._loginUtilityService.setUserLoginData(this.userDetails);
           setTimeout(() => this.toastr.success('Login Successful - Welcome ' + data.userName, 'Login', { timeOut: 4000, progressBar: true, positionClass: "toast-bottom-left" }))
-          if (this.userDetails.userRole === UserRoleType.USER) {
+          if (this.userDetails.userRole === userroleenum.USER) {
             this._router.navigate(['../' + Project353Routes.myhomeview + '/' + this.userDetails.uid], { relativeTo: this._activatedRoute });
-          } else if (this.userDetails.userRole === UserRoleType.SUPERADMIN ||
-            this.userDetails.userRole === UserRoleType.ADMIN || this.userDetails.userRole === UserRoleType.MANAGER) {
+          } else if (this.userDetails.userRole === userroleenum.SUPERADMIN ||
+            this.userDetails.userRole === userroleenum.ADMIN || this.userDetails.userRole === userroleenum.MANAGER) {
             this._router.navigate(['../' + Project353Routes.mybusiness + '/' + this.userDetails.uid + '/' + Project353Routes.manageroles], { relativeTo: this._activatedRoute });
           }
         } else if (data.status === false && (data.accountStatus === 1) || data.accountStatus === 0) {
@@ -175,9 +175,9 @@ export class MyloginComponent implements OnInit {
       setTimeout(() => this.toastr.warning('You must accept Terms & Conditions', 'Alert', { timeOut: 3000, progressBar: true, positionClass: "toast-bottom-left" }));
       return;
     }
-    this.userSignupDetails.createdBy = UserRoleType.USER;
-    this.userSignupDetails.role = UserRoleType.USER;
-    // this.userSignupDetails.roleName = UserRoleTypeName.USER;
+    this.userSignupDetails.createdBy = userroleenum.USER;
+    this.userSignupDetails.role = userroleenum.USER;
+    // this.userSignupDetails.roleName = userroleenumName.USER;
     this._userService.saveUser(this.userSignupDetails).subscribe(
       data => {
         this.user = data;

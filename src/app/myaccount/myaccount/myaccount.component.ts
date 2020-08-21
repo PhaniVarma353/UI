@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, AfterContentChecked, AfterViewChecked, AfterViewInit, ChangeDetectorRef, DoCheck, OnDestroy } from '@angular/core';
 import { IRolesInputData } from 'src/app/interfaces/RolesInterface';
-import { UserRoleType, UserRoleTypeName } from 'src/app/shared/userroleenum';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Project353Routes } from 'src/app/app.component.routes';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { LoginUtilityService } from 'src/app/shared/services/loginutilityservice';
+import { userroleenum } from 'src/app/shared/userroleenum';
+import { userroleenumname } from 'src/app/shared/userroelenumname';
 
 @Component({
   selector: 'app-myaccount',
@@ -96,14 +96,14 @@ export class MyaccountComponent implements OnInit, AfterContentChecked,AfterView
 
   register(role: number) {
     this.roleInputData.createRole = role;
-    if (role === UserRoleType.SUPERADMIN) {
-      this.roleInputData.roleName = UserRoleTypeName.SUPERADMIN;
-    } else if (role === UserRoleType.ADMIN) {
-      this.roleInputData.roleName = UserRoleTypeName.ADMIN;
-    } else if (role === UserRoleType.MANAGER) {
-      this.roleInputData.roleName = UserRoleTypeName.MANAGER;
+    if (role === userroleenum.SUPERADMIN) {
+      this.roleInputData.roleName = userroleenumname.SUPERADMIN;
+    } else if (role === userroleenum.ADMIN) {
+      this.roleInputData.roleName = userroleenumname.ADMIN;
+    } else if (role === userroleenum.MANAGER) {
+      this.roleInputData.roleName = userroleenumname.MANAGER;
     } else {
-      this.roleInputData.roleName = UserRoleTypeName.USER;
+      this.roleInputData.roleName = userroleenumname.USER;
     }
     this.showRegistration = true;
   }
