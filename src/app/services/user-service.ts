@@ -6,22 +6,24 @@ import { UserSignupDetails, UserDetails } from '../interfaces/UserDetails';
 @Injectable()
 export class UserService {
 
+    private url:string = "https://sample-app-7.herokuapp.com/"
+
     constructor(private httpClient: HttpClient) { }
 
     getUsers(): Observable<any> {
-        return this.httpClient.get('http://localhost:7077/users/all');
+        return this.httpClient.get(this.url + 'users/all');
     }
 
     getAllUsersOnRole(role: number): Observable<any> {
-        return this.httpClient.get('http://localhost:7077/users/get/allusers/role/' + role);
+        return this.httpClient.get(this.url + 'users/get/allusers/role/' + role);
     }
 
     getUserById(userId: number): Observable<any> {
-        return this.httpClient.get('http://localhost:7077/users/' + userId);
+        return this.httpClient.get(this.url + 'users/' + userId);
     }
 
     saveUser(userDetails: UserSignupDetails): Observable<any> {
-        return this.httpClient.post('http://localhost:7077/users/save', userDetails, {
+        return this.httpClient.post(this.url + 'users/save', userDetails, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
@@ -29,7 +31,7 @@ export class UserService {
     };
 
     saveSettings(userDetails: UserDetails): Observable<any> {
-        return this.httpClient.post('http://localhost:7077/users/save', userDetails, {
+        return this.httpClient.post(this.url + 'users/save', userDetails, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })

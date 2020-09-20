@@ -7,26 +7,28 @@ import { ProjectPropertiesRequest } from '../interfaces/ProjectProperties';
 @Injectable()
 export class ProjectPropertiesService {
 
+    private url:string = "https://sample-app-7.herokuapp.com/"
+
     constructor(private httpClient: HttpClient) { }
 
     getProjectProperties(): Observable<any> {
-        return this.httpClient.get('http://localhost:7077/common/getproperties');
+        return this.httpClient.get(this.url + 'common/getproperties');
     }
 
     getCountriesAndStatesList(): Observable<any> {
-        return this.httpClient.get('http://localhost:7077/common/countries-and-states');
+        return this.httpClient.get(this.url + 'common/countries-and-states');
     }
 
     getStatesList(): Observable<any> {
-        return this.httpClient.get('http://localhost:7077/common/states');
+        return this.httpClient.get(this.url + 'common/states');
     }
 
     getCountries(): Observable<any> {
-        return this.httpClient.get('http://localhost:7077/common/countries');
+        return this.httpClient.get(this.url + 'common/countries');
     }
 
     saveProperties(projectProperties: ProjectPropertiesRequest): Observable<any> {
-        return this.httpClient.post('http://localhost:7077/project-properties/save', projectProperties, {
+        return this.httpClient.post(this.url + 'project-properties/save', projectProperties, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })

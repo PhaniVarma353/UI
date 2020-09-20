@@ -9,14 +9,16 @@ import { ChangePasswordRequest } from '../interfaces/ChangePasswordDetails';
 @Injectable()
 export class LoginService {
 
+    private url:string = "https://sample-app-7.herokuapp.com/"
+
     constructor(private httpClient: HttpClient) { }
 
     getUsers(): Observable<any> {
-        return this.httpClient.get('http://localhost:7077/users/all');
+        return this.httpClient.get(this.url + 'users/all');
     }
 
     authenticateUserLogin(userDetails: UserInfo): Observable<any> {
-        return this.httpClient.post('http://localhost:7077/app/login/authenticate', userDetails, {
+        return this.httpClient.post('app/login/authenticate', userDetails, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
@@ -24,7 +26,7 @@ export class LoginService {
     };
 
     resetUserLogin(userDetails: ResetPasswordDetails): Observable<any> {
-        return this.httpClient.post('http://localhost:7077/app/login/reset-password', userDetails, {
+        return this.httpClient.post(this.url + 'app/login/reset-password', userDetails, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
@@ -32,7 +34,7 @@ export class LoginService {
     };
 
     changePassword(changePasswordRequest: ChangePasswordRequest): Observable<any> {
-        return this.httpClient.post('http://localhost:7077/app/login/change-password', changePasswordRequest, {
+        return this.httpClient.post(this.url + 'app/login/change-password', changePasswordRequest, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
